@@ -107,20 +107,30 @@ Create new access token with name `jenkins` and provide following scopes
 
 **Copy access key**   
 
-Go to the Blue Ocean console in Jenkins and select `Create new pipeline` and `Github`.  Enter the github access token previously obtained and connect.  
+## Part 6: Create new pipeline
+1. Go to the Blue Ocean console in Jenkins and select `Create new pipeline` and `Github`.  
+2. Enter the github access token previously obtained and connect.  
+3. Select your account, `static` repo.  Pipeline should automatically run.
 
-## Part 6: Install AWS Plugins
+## Part 7: Install AWS Plugins
 Go to The left-hand bar and select `Manage Jenkins` -> `Manage Plugins` -> Available tab.
 Then install the plugins for aws by searching `aws`  
 * Pipeline: AWS Steps
 
-## Part 7: Add credentials 
+**Install without restart**
+
+Restart after install.  If jenkins does not restart automatically after install, restart via cli.  To restart jenkins from the cli...
+```
+sudo systemctl restart jenkins
+```
+
+## Part 8: Add credentials 
 1. Click 'Credentials' from the sidebar.
 2. Click on "(global)" from the list, and then "Add credentials" from the sidebar.
 3. Choose "AWS Credentials" from the dropdown, add "aws-static" on ID, add a description like "Static HTML publisher in AWS," and fill in the AWS Key and Secret Access Key generated when the IAM role was created.
 4. Click OK, and the credentials should now be available for the rest of the system.
 
-## Part 8: Set up S3 Bucket
+## Part 9: Set up S3 Bucket
 1. Login to console for the `jenkins` user and select `S3`
 2. Create new bucket with unique name
 3. Take note of region
@@ -145,3 +155,4 @@ Then install the plugins for aws by searching `aws`
 }
 ```
 10. Save, and `Permissions public` should now show in tab.  
+
