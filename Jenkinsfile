@@ -11,8 +11,10 @@ pipeline {
       }
     }
     stage('Upload to AWS') {
-      withAWS(region: 'us-east-1') {
-        s3Upload(file: 'index.html', bucket: 'static-site-jenkins', path: './index.html')
+      steps {
+        withAWS(region: 'us-east-1') {
+          s3Upload(file: 'index.html', bucket: 'static-site-jenkins', path: './index.html')
+        }
       }
     }
   }
