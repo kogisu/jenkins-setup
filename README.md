@@ -61,7 +61,8 @@ sudo apt install jenkins
 
 Confirm that jenkins is running using `systemctl`  
 ```
-sudo systemctl status jenkins```
+sudo systemctl status jenkins
+```
 
 ## Part 3: Set up Jenkins  
 If everything above ran smoothly, you should be able to access jenkins at   
@@ -144,6 +145,3 @@ Then install the plugins for aws by searching `aws`
 }
 ```
 10. Save, and `Permissions public` should now show in tab.  
-
-
-
