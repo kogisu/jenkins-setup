@@ -127,7 +127,7 @@ sudo systemctl restart jenkins
 ## Part 8: Add credentials 
 1. Click 'Credentials' from the sidebar.
 2. Click on "(global)" from the list, and then "Add credentials" from the sidebar.
-3. Choose "AWS Credentials" from the dropdown, add "aws-static" on ID, add a description like "Static HTML publisher in AWS," and fill in the AWS Key and Secret Access Key generated when the IAM role was created.
+3. Choose "AWS Credentials" from the dropdown, add "aws-static" on ID, add a description like "Static HTML publisher in AWS," and fill in the AWS Key and Secret Access Key generated when the IAM role was created.  **Note:** The aws credentials ID is `aws-static`.
 4. Click OK, and the credentials should now be available for the rest of the system.
 
 ## Part 9: Set up S3 Bucket
@@ -156,3 +156,18 @@ sudo systemctl restart jenkins
 ```
 10. Save, and `Permissions public` should now show in tab.  
 
+## Part 10:
+To add functionality for aws, see documentation for [pipeline-aws-plugin](https://github.com/jenkinsci/pipeline-aws-plugin#withAWS).
+
+To link to aws, use `withAWS` to provide authorization for steps. 
+
+For example, to upload to s3, set up stage as following...
+```
+stage('Upload to AWS') {
+    steps {
+        withAWS(region: 'us-east-1', credentials: 'aws-static') {
+            s3Upload(file: 'index.html', bucket: 'static-site-jenkins', path: 'index.html')
+        }
+    }
+} 
+```
