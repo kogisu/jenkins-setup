@@ -13,6 +13,7 @@ pipeline {
     stage('Upload to AWS') {
       steps {
         withAWS(region: 'us-east-1') {
+          def identity=awsIdentity()
           s3Upload(file: 'index.html', bucket: 'static-site-jenkins', path: './index.html')
         }
       }
