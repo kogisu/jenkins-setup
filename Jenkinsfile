@@ -12,8 +12,8 @@ pipeline {
     }
     stage('Upload to AWS') {
       steps {
-        def identity=awsIdentity();//Log AWS credentials
-        withAWS(region: 'us-east-1') {
+        withAWS(region: 'us-east-1', credentials: 'AKIAXJX6GQKY3PX5FDP6') {
+          def identity=awsIdentity();//Log AWS credentials
           s3Upload(file: 'index.html', bucket: 'static-site-jenkins', path: './index.html')
         }
       }
