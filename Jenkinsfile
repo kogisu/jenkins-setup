@@ -12,8 +12,9 @@ pipeline {
     }
     stage('Upload to AWS') {
       steps {
+        sh 'pwd'
         withAWS(region: 'us-east-1', credentials: 'aws-static') {
-          s3Upload(file: 'index.html', bucket: 'static-site-jenkins', path: './index.html')
+          s3Upload(file: 'index.html', bucket: 'static-site-jenkins', path: 'index.html')
         }
       }
     }
